@@ -85,6 +85,7 @@ module RIQ
 
     def process_response(resp)
       # pp "processing #{resp}, code: #{resp.code}"
+      # puts resp.parsed_response['name']
       if resp.code == 503
         raise NotImplementedError, 'This function is not currently supported by RelateIQ'
       elsif resp.code == 404 
