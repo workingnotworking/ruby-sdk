@@ -1,4 +1,9 @@
 require 'minitest/autorun'
+# testing!
+require 'webmock/minitest'
+
+# disallow actual http requests!
+# WebMock.disable_net_connect!(allow_localhost: true)
 require_relative '../lib/riq'
 
 describe RIQ::Account do
@@ -12,6 +17,8 @@ describe RIQ::Account do
 
   describe '#new' do
     it 'should get account' do
+      puts 'asdqwer'
+      stub_request(:get, /accounts\/54e6542fe4b01ad3b7362bc4$/).with(:headers => {'Accept'=>'application/json', 'Content-Type'=>'application/json'}).to_return(status: 200, body: {})
       @netflix.name.must_equal 'Netflix'
     end
 
