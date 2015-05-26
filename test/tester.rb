@@ -1,5 +1,7 @@
 # testing!
 require 'vcr'
+require 'minitest/autorun'
+require 'webmock/minitest'
 
 VCR.configure do |c|
   # important so the api keys don't matter
