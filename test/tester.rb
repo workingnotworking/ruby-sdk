@@ -1,9 +1,5 @@
 # testing!
-require 'webmock/minitest'
 require 'vcr'
-
-# disallow actual http requests!
-# WebMock.disable_net_connect!(allow_localhost: true)
 
 VCR.configure do |c|
   # important so the api keys don't matter

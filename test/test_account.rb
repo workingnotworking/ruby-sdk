@@ -49,9 +49,12 @@ describe RIQ::Account do
     end
   end
 
-  # describe "#field_value" do
-  #   it 'should fetch a field value' do 
-  #     @netflix.field_value(2).wont_be_nil
-  #     @dat.field_value(0).wont_be_nil
-  #   end
+  describe "#field_value" do
+    it 'should fetch a field value' do 
+      @netflix = create_netflix
+      @netflix.field_value(2).wont_be_nil
+      @dat = create_data
+      @dat.field_value(0).wont_be_nil
+    end
+  end
 end
