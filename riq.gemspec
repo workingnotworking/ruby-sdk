@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = 'riq'
-  spec.version       = '1.0.2'
+  spec.version       = '1.1.2'
   spec.authors       = ['David Brownman']
   spec.email         = ['david@relateiq.com']
   spec.homepage      = "https://github.com/relateiq/ruby-sdk"
@@ -20,9 +20,9 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'httparty', '0.13.3'
 
   # dev dependencies
+  spec.add_development_dependency 'pry'
   spec.add_development_dependency 'bundler', '~> 1'
   spec.add_development_dependency 'vcr', '~> 2.9'
   spec.add_development_dependency 'webmock', '~> 1.21'
-  spec.add_development_dependency 'pry'
   spec.add_development_dependency 'minitest', '~> 5.4'
 end

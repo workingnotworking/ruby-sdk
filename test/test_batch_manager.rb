@@ -9,12 +9,13 @@ describe RIQ::BatchManager do
 
   describe '#accounts' do
     it 'should get all accounts' do
+      # could limit this, but want it to make sure the default works
       accounts = RIQ.accounts
       accounts.each do |a|
         a.id.wont_be_nil
         a.name.wont_be_nil
         @c += 1
-        break if @c >= 20
+        break if @c >= 5
       end
       @c.wont_equal 0
     end
@@ -22,11 +23,12 @@ describe RIQ::BatchManager do
 
   describe '#contacts' do 
     it 'should get all contacts' do
-      contacts = RIQ.contacts
+      contacts = RIQ.contacts({_limit: 3})
       contacts.each do |con|
         con.id.wont_be_nil
         @c += 1
-        break if @c >= 20
+        # need to test that it can cycle to the next call
+        break if @c >= 10
       end
       @c.wont_equal 0
     end
@@ -43,7 +45,7 @@ describe RIQ::BatchManager do
         lic = 0
         l.list_items.each do |li|
           lic += 1
-          break if lic >= 5
+          break if lic >= 3
         end
         lic.wont_equal 0
         break if @c >= 20
@@ -57,6 +59,13 @@ describe RIQ::BatchManager do
       c = nil
       c = RIQ.contacts.first
       c.must_be_instance_of RIQ::Contact
+    end
+
+    it 'should not change fetch options' do
+      opts = {_limit: 15, _ids: '5550fd35e4b0da744884f69d'}
+      bm = RIQ.contacts(opts)
+      bm.first
+      bm.fetch_options.must_equal bm.fetch_options.merge(opts)
     end
   end
 
