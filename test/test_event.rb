@@ -6,7 +6,7 @@ describe RIQ::Event do
     RIQ.init
     # sammy's contact ID
     @e = RIQ.event
-    @ev = RIQ.event({subject: "My Sub", body: "Very intersting body", 'participantIds' => [{type: :email, value: 'fake@fakerelateiq.com'}]})
+    @ev = RIQ.event({subject: "My Sub", body: "Bodily harm", 'participantIds' => [{type: :email, value: 'fake@fakerelateiq.com'}]})
   end
 
   describe '#new' do

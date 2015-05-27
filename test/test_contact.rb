@@ -32,7 +32,7 @@ describe RIQ::Contact do
   end
 
   describe 'properties' do 
-    it 'should add new emails only if they\'re new' do
+    it "should add new emails only if they're new" do
       @sammy.email.must_equal @sammy.add(:email, 'nammari@stanford.edu')
 
       @sammy.email.wont_equal @sammy.add(:email, 'jammari@stanford.edu')      
