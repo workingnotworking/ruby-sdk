@@ -44,12 +44,17 @@ module RIQ
     # @return [RIQObject]
     def first
       reset_cache
-      fetch_page.first
+      o = fetch_options.dup
+      self.send(:fetch_options=, {_limit: 1})
+      r = fetch_page.first
+      self.send(:fetch_options=, o)
+      r
     end
 
     # Set fetch options
     # @param opts [Hash] Where values are either strings or arrays
     def fetch_options=(opts = {})
+      # these need to be updated with API changes
       valid_keys = [:_ids, :_start, :_limit, :contactIds, :accountIds, :modifiedDate]
       reset_cache
       options = {}

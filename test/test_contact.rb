@@ -1,27 +1,42 @@
 require 'minitest/autorun'
 require_relative '../lib/riq'
 
+def create_sammy
+  RIQ.contact('542b205be4b04cd81270dff9')
+end
+
+def create_blank_contact
+  RIQ.contact  
+end
+
+def create_data
+  RIQ.contact({properties: {'name' => ['david'], email: ['dab@relateiq.com']}})
+end
+
 describe RIQ::Contact do
   before do
     RIQ.init
-    # sammy's contact ID
-    @sammy = RIQ.contact('542b205be4b04cd81270dff9')
-    @c = RIQ.contact
-    @dat = RIQ.contact({properties: {'name' => ['david'], email: ['dab@relateiq.com']}})
   end
 
   describe '#new' do
     it 'should get account' do
+      @sammy = create_sammy
       @sammy.name.must_include 'Sammy Nammari'
     end
 
-    it 'make blank contact' do
+    it 'should make blank contact' do
+      @c = create_blank_contact
       @c.wont_be_nil
+    end
+
+    it 'should take a data hash' do
+      @dat = create_data
     end
   end
 
   describe '#save' do 
     it 'should create new contact and delete it' do
+      @c = create_blank_contact
       @c.add(:name, 'Ron Mexico')
       @c.save
 
@@ -32,13 +47,15 @@ describe RIQ::Contact do
   end
 
   describe 'properties' do 
-    it 'should add new emails only if they\'re new' do
+    it "should add new emails only if they're new" do
+      @sammy = create_sammy
       @sammy.email.must_equal @sammy.add(:email, 'nammari@stanford.edu')
 
       @sammy.email.wont_equal @sammy.add(:email, 'jammari@stanford.edu')      
     end
 
     it 'should only take strings as properties' do
+      @c = create_blank_contact
       @c.add(:phone, '867-5309').wont_be_empty
 
       begin
@@ -53,6 +70,7 @@ describe RIQ::Contact do
 
   describe '#upsert' do 
     it 'should upsert' do
+      @sammy = create_sammy
       # this could be better
       @sammy.email.must_equal @sammy.upsert.email
 
