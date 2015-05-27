@@ -17,10 +17,9 @@ Gem::Specification.new do |spec|
   # spec.post_install_message = 'The power of relationship intelligence is in your hands!'
 
   # prod dependencies
-  spec.add_dependency 'httparty', '0.13.3'
+  spec.add_dependency 'httparty', '~> 0.13'
 
   # dev dependencies
-  spec.add_development_dependency 'pry'
   spec.add_development_dependency 'bundler', '~> 1'
   spec.add_development_dependency 'vcr', '~> 2.9'
   spec.add_development_dependency 'webmock', '~> 1.21'
