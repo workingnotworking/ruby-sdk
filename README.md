@@ -8,7 +8,7 @@ A full featured API interface for interacting with the [RelateIQ](https://relate
 ## Status
 
 |Badge (click for more info)|Explanation|
-|-|-|
+|---|---|
 |[![](https://img.shields.io/badge/documentation-100%25-brightgreen.svg)](http://www.rubydoc.info/gems/riq)|% of methods documented|
 |[![Code Climate](https://img.shields.io/codeclimate/coverage/github/relateiq/ruby-sdk.svg)](https://codeclimate.com/github/relateiq/ruby-sdk/coverage)|% of methods tested|
 |[![Code Climate](https://img.shields.io/codeclimate/github/relateiq/ruby-sdk.svg)](https://codeclimate.com/github/relateiq/ruby-sdk/code)|Overall code quality (4.0 is best)|
