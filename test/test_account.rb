@@ -1,6 +1,4 @@
-require 'minitest/autorun'
-
-require_relative '../lib/riq'
+require_relative 'test_helper'
 
 def create_netflix
   RIQ.account('54e6542fe4b01ad3b7362bc4')
@@ -15,10 +13,6 @@ def create_data_account
 end
 
 describe RIQ::Account do
-  before do
-    RIQ.init
-  end
-
   describe '#new' do
     it 'should get account' do
       @netflix = create_netflix

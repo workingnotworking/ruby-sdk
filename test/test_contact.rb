@@ -1,5 +1,4 @@
-require 'minitest/autorun'
-require_relative '../lib/riq'
+require_relative 'test_helper'
 
 def create_sammy
   RIQ.contact('542b205be4b04cd81270dff9')
@@ -14,10 +13,6 @@ def create_data
 end
 
 describe RIQ::Contact do
-  before do
-    RIQ.init
-  end
-
   describe '#new' do
     it 'should get account' do
       @sammy = create_sammy
