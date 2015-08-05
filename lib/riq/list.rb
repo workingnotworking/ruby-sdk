@@ -47,7 +47,7 @@ module RIQ
     # @return [Hash, nil] info on the field specified
     def fields(id = nil)
       unless id.nil?
-        @fields.select{|f| f['id'] == id.to_s}.first
+        @fields.select{|f| f[:id] == id.to_s}.first
       else
         @fields
       end
