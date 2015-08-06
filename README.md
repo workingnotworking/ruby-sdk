@@ -34,6 +34,11 @@ A full featured API interface for interacting with the [RelateIQ](https://relate
 
     # Etc
 
+## Testing
+
+Copy `.env.example` to `.env` and edit to add your RelateIQ account credentials. Then run the Rake task:
+
+    rake test
 
 ## Helpful Links
 
