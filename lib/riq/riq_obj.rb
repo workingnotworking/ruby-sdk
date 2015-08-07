@@ -5,8 +5,6 @@ module RIQ
   # @abstract This class should not be used directly. 
   #   Instead, use a child such as {Contact} or {List}.
   class RIQObject
-    
-
     attr_accessor :id
     attr_reader :modified_date
 
