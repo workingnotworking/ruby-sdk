@@ -1,5 +1,4 @@
-require 'minitest/autorun'
-require_relative '../lib/riq'
+require_relative 'test_helper'
 
 def create_blank_list_item
   @l.list_item
@@ -11,7 +10,6 @@ end
 
 describe RIQ::ListItem do
   before do
-    RIQ.init
     lid = '54ca9b25e4b0b29d80ce4b4e'
     @l = RIQ.list(lid)
   end

@@ -1,9 +1,7 @@
-require 'minitest/autorun'
-require_relative '../lib/riq'
+require_relative 'test_helper'
 
 describe RIQ::BatchManager do
   before do
-    RIQ.init
     @c = 0
   end
 

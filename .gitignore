@@ -23,6 +23,7 @@ build/
 /doc/
 /rdoc/
 Gemfile.lock
+.env
 
 ## Environment normalisation:
 /.bundle/

@@ -124,7 +124,7 @@ module RIQ
     # Always use RIQ.client to retrieve the client object.
     # @return [Client] The client object
     def client
-      raise RIQError, 'Client not initialized' unless @@client
+      raise RIQError, 'Client not initialized' unless defined?(@@client)
       @@client
     end
   end

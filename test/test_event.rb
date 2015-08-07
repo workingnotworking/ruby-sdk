@@ -1,5 +1,4 @@
-require 'minitest/autorun'
-require_relative '../lib/riq'
+require_relative 'test_helper'
 
 def create_blank_event
   RIQ.event
@@ -10,10 +9,6 @@ def create_data_event
 end
 
 describe RIQ::Event do
-  before do
-    RIQ.init
-  end
-
   describe '#new' do
     it 'should start blank' do
       @e = create_blank_event

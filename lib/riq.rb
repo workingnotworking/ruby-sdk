@@ -60,7 +60,7 @@ module RIQExtensions
       return {} if self.empty?
       o = {}
       self.each do |k,v| 
-        if v.is_a?(Array) && v.first.include?(:raw)
+        if v.is_a?(Array) && v.length > 0 && v.first.include?(:raw)
           o[k.to_sym.to_snake] = v.first[:raw]
         else
           o[k.to_sym.to_snake] = v
