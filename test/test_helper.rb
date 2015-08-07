@@ -1,8 +1,11 @@
 require 'minitest/autorun'
 require 'vcr'
 
-require 'dotenv'
-Dotenv.load
+# this is so it plays nice with travis
+unless ENV['RIQ_TEST_API_KEY'] && ENV['RIQ_TEST_API_SECRET']
+  require 'dotenv'
+  Dotenv.load
+end
 
 require_relative '../lib/riq'
 
