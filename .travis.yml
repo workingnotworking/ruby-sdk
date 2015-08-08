@@ -1,5 +1,7 @@
 language: ruby
 rvm: 
+    # could add more here- what's a good spread?
+    - 2.0.0
     - 2.1.2
 install: bundle install
 script: rake test

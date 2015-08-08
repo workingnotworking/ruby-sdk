@@ -10,11 +10,7 @@ module RIQ
     # @param opts [Hash] fetch options
     def initialize(klass, opts = {})
       @klass = klass
-      begin
-        raise unless @klass.ancestors.include? RIQ::RIQObject
-      rescue
-        raise RIQError, 'Must pass a RIQ Class'
-      end
+      raise(RIQError, 'Must pass a RIQ Class') unless @klass.ancestors.include?(RIQ::RIQObject)
       @fetch_options = {}
       reset_cache
       
@@ -82,7 +78,6 @@ module RIQ
     end
 
     def next_item
-      # I believe this is resetting opts somehow/not respecting limit
       if @cache_index == @cache.size
         return nil if ![0, @fetch_options[:_limit]].include? @cache.size
         # puts "\n=== fetching page! (#{@page_index}) (#{@fetch_options[:_limit]})"
