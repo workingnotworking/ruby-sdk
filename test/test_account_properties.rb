@@ -6,7 +6,9 @@ describe RIQ::AccountProperties do
   end
 
   describe '#initialize' do
-    @p.data.wont_be_nil
+    it 'should have data' do 
+      @p.data.wont_be_nil
+    end
   end 
 
   describe '#field' do
