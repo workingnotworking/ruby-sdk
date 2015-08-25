@@ -18,21 +18,24 @@ A full featured API interface for interacting with the [RelateIQ](https://relate
 
 ## Code Examples
 
-    require 'riq'
-    RIQ.init(ENV['RIQ_API_KEY'], ENV['RIQ_API_SECRET'])
+``` ruby
+require 'riq'
+RIQ.init(ENV['RIQ_API_KEY'], ENV['RIQ_API_SECRET'])
 
-    # Contacts
-    RIQ.contacts.each do |c|
-        # do something
-        puts c.name
-    end
-    # => Bruce Wayne
-    # => Malcolm Reynolds
-    # => Michael Bluth
-    # => Tony Stark
-    ...
+# Contacts
+RIQ.contacts.each do |c|
+    # do something
+    puts c.name
+end
 
-    # Etc
+# => Bruce Wayne
+# => Malcolm Reynolds
+# => Michael Bluth
+# => Tony Stark
+...
+# Etc
+
+```
 
 ## Testing
 
