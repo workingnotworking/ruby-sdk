@@ -19,6 +19,11 @@ module RIQ
         email: @email
       }
     end
+
+    # Overwriting parent because lists can't be saved through the API
+    def save
+      raise NotImplementedError, "Users can't be edited through the API"
+    end
     
     private
     def init(obj = nil)
