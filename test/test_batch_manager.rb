@@ -46,7 +46,8 @@ describe RIQ::BatchManager do
           break if lic >= 3
         end
         lic.wont_equal 0
-        break if @c >= 20
+        raise 'no list items?!' if lic == 0
+        break if @c >= 30
       end
       @c.wont_equal 0
     end
@@ -60,7 +61,7 @@ describe RIQ::BatchManager do
     end
 
     it 'should not change fetch options' do
-      opts = {_limit: 15, _ids: '5550fd35e4b0da744884f69d'}
+      opts = {_limit: 15, _ids: '5620d440e4b01bbcd7f9e7c9'}
       bm = RIQ.contacts(opts)
       bm.first
       bm.fetch_options.must_equal bm.fetch_options.merge(opts)
@@ -69,7 +70,7 @@ describe RIQ::BatchManager do
 
   describe '#fetch_options' do 
     it 'should respect limits' do 
-      b = RIQ.contacts({_ids: ['53a0bc44e4b0d7993870bcf4','5550fd35e4b0da744884f69d']})
+      b = RIQ.contacts({_ids: ['5620d44ee4b01bbcd7f9e7cf','5620d440e4b01bbcd7f9e7c9']})
       b.each do |i|
         @c += 1
       end

@@ -1,7 +1,7 @@
 require_relative 'test_helper'
 
 def create_netflix
-  RIQ.account('54e6542fe4b01ad3b7362bc4')
+  RIQ.account('5620d57de4b01bbcd7f9e7d2')
 end
 
 def create_blank_account

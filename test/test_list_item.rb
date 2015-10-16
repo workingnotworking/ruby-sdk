@@ -10,7 +10,7 @@ end
 
 describe RIQ::ListItem do
   before do
-    lid = '54ca9b25e4b0b29d80ce4b4e'
+    lid = '5620d3e8e4b01bbcd7f9e7b2'
     @l = RIQ.list(lid)
   end
 

@@ -1,7 +1,7 @@
 require_relative 'test_helper'
 
 def create_sammy
-  RIQ.contact('542b205be4b04cd81270dff9')
+  RIQ.contact('5620d6ade4b01bbcd7f9e7d5')
 end
 
 def create_blank_contact
