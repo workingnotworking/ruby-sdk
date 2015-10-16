@@ -1,9 +1,9 @@
-# RelateIQ Ruby SDK 
+# SalesforceIQ Ruby SDK 
 [![Gem Version](https://img.shields.io/gem/v/riq.svg)](http://badge.fury.io/rb/riq)
 [![Build Status](https://img.shields.io/travis/relateiq/ruby-sdk.svg)](https://travis-ci.org/relateiq/ruby-sdk)
 
 
-A full featured API interface for interacting with the [RelateIQ](https://relateiq.com) API. 
+A full featured native Ruby interface for interacting with the [SalesforceIQ](https://salesforceiq.com)(formerly RelateIQ) API. 
 
 ## Status
 
@@ -39,11 +39,11 @@ end
 
 ## Testing
 
-Copy `.env.example` to `.env` and edit to add your RelateIQ account credentials. Then run the Rake task:
+Copy `.env.example` to `.env` and edit to add your SalesforceIQ account credentials. Then run the Rake task:
 
     rake test
 
 ## Helpful Links
 
 * [Full ruby docs](http://www.rubydoc.info/gems/riq)
-* [Examples and API docs](https://api.relateiq.com/#/ruby)
+* [Examples and API docs](https://api.salesforceiq.com/#/ruby)

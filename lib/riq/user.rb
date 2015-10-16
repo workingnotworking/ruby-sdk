@@ -1,7 +1,7 @@
 require_relative 'riq_obj'
 
 module RIQ
-  # Users are represented by owners and contacts in your RelateIQ organization
+  # Users are represented by owners and contacts in your SalesforceIQ organization
   class User < RIQObject
     attr_accessor :name
     attr_accessor :email

@@ -2,12 +2,12 @@
 
 Gem::Specification.new do |spec|
   spec.name          = 'riq'
-  spec.version       = '1.2.0'
+  spec.version       = '1.2.1'
   spec.authors       = ['David Brownman']
   spec.email         = ['david@relateiq.com']
   spec.homepage      = "https://github.com/relateiq/ruby-sdk"
   spec.summary       = 'Ruby RIQ API client'
-  spec.description   = 'Full featured ruby client for interacting with the RelateIQ API'
+  spec.description   = 'Full featured ruby client for interacting with the SalesforceIQ API'
   spec.license       = 'MIT'
   # this works for only adding committed files, but new files don't work until they're committed.
   spec.files         = `git ls-files -z`.split("\x0")

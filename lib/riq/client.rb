@@ -12,7 +12,7 @@ module RIQ
     def initialize(key, secret)
       raise 'Missing credentials' if key.nil? || secret.nil?
 
-      @root_url = 'https://api.relateiq.com/v2'
+      @root_url = 'https://api.salesforceiq.com/v2'
 
       @auth = {username: key, password: secret}
       @headers = {
@@ -87,7 +87,7 @@ module RIQ
       # pp "processing #{resp}, code: #{resp.code}"
       # puts resp.parsed_response['name']
       if resp.code == 503
-        raise NotImplementedError, 'This function is not currently supported by RelateIQ'
+        raise NotImplementedError, 'This function is not currently supported by SalesforceIQ'
       elsif resp.code == 404 
         raise NotFoundError, 'Object Not Found'
       elsif resp.code >= 400 
@@ -110,8 +110,8 @@ module RIQ
   end
 
   class << self  
-    # @param key [String] RelateIQ API key
-    # @param secret [String] RelateIQ API secret
+    # @param key [String] SalesforceIQ API key
+    # @param secret [String] SalesforceIQ API secret
     # @return [RIQ] The module, in case you want it.
     def init(key = nil, secret = nil)
       key ||= ENV['RIQ_TEST_API_KEY']
