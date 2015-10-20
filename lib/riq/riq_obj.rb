@@ -60,6 +60,7 @@ module RIQ
 
     # Creates or updates the object
     def save(options = nil)
+      pre_save
       if @id.nil?
         # create
         init(@client.post(node, payload, options: options).symbolize)
@@ -90,6 +91,10 @@ module RIQ
     private
     def init
       raise RIQError, 'This should be overwritten'
+    end
+
+    def pre_save
+      # do any validation necessary
     end
 
     # def exists

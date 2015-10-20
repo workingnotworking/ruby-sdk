@@ -13,17 +13,25 @@ module RIQ
     attr_reader :modified_date
     attr_reader :created_date
 
+    # @example create a list item
+    #   # vanilla
+    #   RIQ::ListItem.new
+    #   # with a list id
+    #   RIQ::ListItem(lid: 'abc123') # OR RIQ.list('abc123').list_item
     def initialize(id = nil, lid: nil)
       if id.is_a? Hash
+        # init with data
         super(id)
-      elsif id.nil? && lid.nil?
+      elsif id.nil?
+        # vanilla object
         super(nil)
-      elsif id.nil? && !lid.nil?
-        super(nil)
-        @list_id = lid
-      elsif id.nil? || lid.nil?
+        # maybe init with lid
+        @list_id = lid unless lid.nil?
+      elsif lid.nil?
+        # has id, but not lid, that's an error
         raise RIQError, 'ObjectID and List ID are required'
       else
+        # grabbing a specific listitem, fetch it
         super("#{lid}/listitems/#{id}")
       end
     end
@@ -114,6 +122,12 @@ module RIQ
         @created_date = nil
       end
       self
+    end
+
+    def pre_save
+      if @list_id.nil?
+        raise RIQError, 'List ID is required'
+      end
     end
   end
 end
