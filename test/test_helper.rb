@@ -7,6 +7,7 @@ unless ENV['RIQ_TEST_API_KEY'] && ENV['RIQ_TEST_API_SECRET']
   Dotenv.load
 end
 
+# use directory, not locally installed copy
 require_relative '../lib/riq'
 
 $LOAD_PATH.unshift(File.dirname(__FILE__))

@@ -47,5 +47,16 @@ describe RIQ::ListItem do
 
       @li.field_value(0).wont_equal start
     end
+
+    it 'should fail without a list id' do
+      @li = RIQ::ListItem.new
+      begin
+        @li.save
+      rescue RIQ::RIQError
+        assert(true)
+      else
+        assert(false)
+      end
+    end
   end
 end

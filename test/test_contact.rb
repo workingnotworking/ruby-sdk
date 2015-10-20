@@ -56,9 +56,9 @@ describe RIQ::Contact do
       begin
         @c.add(:name, {value: 'Jenny'})
       rescue RIQ::RIQError
-        nil.must_be_nil
+        assert(true)
       else
-        1.must_be_nil
+        assert(false)
       end
     end
   end
