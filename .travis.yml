@@ -1,8 +1,13 @@
 language: ruby
 rvm: 
-    # could add more here- what's a good spread?
+    # tested all on versions that work on heroku:
+    # https://devcenter.heroku.com/articles/ruby-support#ruby-versions
     - 2.0.0
-    - 2.1.2
+    - 2.1.7
     - 2.2.3
 install: bundle install
 script: rake test
+notifications:
+    email: 
+        on_success: never
+        on_failure: always # the default, but good to mark here

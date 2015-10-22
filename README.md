@@ -45,5 +45,5 @@ Copy `.env.example` to `.env` and edit to add your SalesforceIQ account credenti
 
 ## Helpful Links
 
-* [Full ruby docs](http://www.rubydoc.info/gems/riq)
+* [Full ruby documentation](http://www.rubydoc.info/gems/riq)
 * [Examples and API docs](https://api.salesforceiq.com/#/ruby)

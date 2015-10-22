@@ -62,13 +62,13 @@ module RIQ
         return
       end
 
-      raise RIQError, 'Values must be strings' unless val.is_a? String
+      raise RIQError, 'Values must be strings' unless val.is_a?(String)
 
       # don't add duplicate 
       if @properties[prop].select{|p| p[:value] == val}.empty?
         @properties[prop] << {value: val, metadata: {}}
       end
-      send(prop)
+      get_prop(prop)
     end
 
     # Removes property from hash
@@ -88,7 +88,7 @@ module RIQ
       if @properties.include? prop
         @properties[prop] = @properties[prop].reject{|p| p[:value] == val}
       end
-      send(prop)
+      get_prop(prop)
     end
 
     # Edits an existing object based on matching email(s) or saves a new object
@@ -114,7 +114,7 @@ module RIQ
         @modified_date = obj[:modified_date].cut_milis if obj[:modified_date]
         @properties = {}
         obj[:properties].each do |k,v|
-          raise RIQError, "Properties must be arrays, #{k} wasn't" if !v.is_a?(Array)
+          raise RIQError, "Properties must be arrays, #{k} wasn't" unless v.is_a?(Array)
 
           v.each do |i|
             unless i.is_a?(Hash)
@@ -134,11 +134,11 @@ module RIQ
 
     # unused because we actually put all sorts of stuff in there
     def validate(prop)
-      raise RIQError, %q(Invalid property. Use [:name | :phone | :email | :address] instead) unless [:name, :phone, :email, :address].include? prop
+      raise RIQError, %q(Invalid property. Use [:name | :phone | :email | :address] instead) unless [:name, :phone, :email, :address].include?(prop)
     end
 
     def get_prop(prop)
-      if @properties.include? prop
+      if @properties.include?(prop)
         @properties[prop].map{|p| p[:value]}
       else
         []
