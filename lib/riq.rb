@@ -13,6 +13,7 @@ module RIQExtensions
     end
 
     def to_snake
+      # could also change this to self.split(/(?=[A-Z])/).join('_').downcase
       a = self.to_s.split('')
       n = []
       a.each do |l|
