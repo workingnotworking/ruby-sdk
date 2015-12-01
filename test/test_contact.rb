@@ -29,6 +29,34 @@ describe RIQ::Contact do
     end
   end
 
+  describe '#name' do
+    it 'returns an array of property values' do
+      @sammy = create_sammy
+      @sammy.name.must_equal ['Sammynammari', 'Sammy Nammari']
+    end
+  end
+
+  describe '#primary_name' do
+    it 'returns the preferred property value' do
+      @sammy = create_sammy
+      @sammy.primary_name.must_equal 'Sammy Nammari'
+    end
+  end
+
+  describe '#email' do
+    it 'returns an array of property values' do
+      @sammy = create_sammy
+      @sammy.email.must_equal ['sammy.nammari@gmail.com', 'nammari@stanford.edu', 'sammy@relateiq.com']
+    end
+  end
+
+  describe '#primary_email' do
+    it 'returns the preferred property value' do
+      @sammy = create_sammy
+      @sammy.primary_email.must_equal 'sammy@relateiq.com'
+    end
+  end
+
   describe '#save' do 
     it 'should create new contact and delete it' do
       @c = create_blank_contact
