@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |spec|
   spec.name          = 'riq'
-  spec.version       = '1.2.3'
+  spec.version       = '1.2.4'
   spec.authors       = ['David Brownman']
   spec.email         = ['david@relateiq.com']
   spec.homepage      = "https://github.com/relateiq/ruby-sdk"
