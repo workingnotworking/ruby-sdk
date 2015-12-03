@@ -170,7 +170,14 @@ module RIQ
       if @properties.include?(prop)
         preferred = @properties[prop].map do |p|
           metadata = (p || {})[:metadata]
-          [[(metadata || {})[:primary] == 'true' ? 0 : 1, (metadata || {})[:inactive] == 'true' ? 1 : 0], p[:value]]
+          # grades each property, 0 is more likely to be picked
+          [
+            [
+              (metadata || {})[:primary] == 'true' ? 0 : 1, 
+              (metadata || {})[:inactive] == 'true' ? 1 : 0
+            ],
+            p[:value]
+          ]
         end
         preferred.sort_by { |p| p[0] }.first[1]
       else
