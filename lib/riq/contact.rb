@@ -31,9 +31,20 @@ module RIQ
       get_prop(:name)
     end
 
+    # @!macro [new] prop
+    #   @return [String] the preferred value for $0
+    def primary_name
+      get_primary_prop(:name)
+    end
+
     # @macro prop
     def phone
       get_prop(:phone)
+    end
+
+    # @macro prop
+    def primary_phone
+      get_primary_prop(:phone)
     end
 
     # @macro prop
@@ -42,8 +53,18 @@ module RIQ
     end
 
     # @macro prop
+    def primary_email
+      get_primary_prop(:email)
+    end
+
+    # @macro prop
     def address
       get_prop(:address)
+    end
+
+    # @macro prop
+    def primary_address
+      get_primary_prop(:address)
     end
 
     # Adds property with correct scaffolding
@@ -142,6 +163,25 @@ module RIQ
         @properties[prop].map{|p| p[:value]}
       else
         []
+      end
+    end
+
+    def get_primary_prop(prop)
+      if @properties.include?(prop)
+        preferred = @properties[prop].map do |p|
+          metadata = (p || {})[:metadata]
+          # grades each property, 0 is more likely to be picked
+          [
+            [
+              (metadata || {})[:primary] == 'true' ? 0 : 1, 
+              (metadata || {})[:inactive] == 'true' ? 1 : 0
+            ],
+            p[:value]
+          ]
+        end
+        preferred.sort_by { |p| p[0] }.first[1]
+      else
+        nil
       end
     end
   end
