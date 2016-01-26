@@ -2,9 +2,9 @@
 
 Gem::Specification.new do |spec|
   spec.name          = 'riq'
-  spec.version       = '1.2.4'
+  spec.version       = '1.2.5'
   spec.authors       = ['David Brownman']
-  spec.email         = ['david@relateiq.com']
+  spec.email         = ['dbrownman@salesforce.com']
   spec.homepage      = "https://github.com/relateiq/ruby-sdk"
   spec.summary       = 'Ruby SalesforceIQ API client'
   spec.description   = 'Full featured ruby client for interacting with the SalesforceIQ API'

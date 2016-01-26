@@ -51,7 +51,15 @@ module RIQExtensions
       return {} if self.empty?
       o = {}
       self.each do |k, v|
-        o[k.to_cam] = [{raw: v}]
+        # TODO: should all picklists be arrays? right now it's only an array if it's a multipick with > 1 value
+        # the api discards extra elements in non-list fields
+        # listitem object doesn't know field types though
+        if v.is_a? Array
+          r = v.map{|x| {raw: x.to_s}}
+        else
+          r = [{raw: v.to_s}]
+        end
+        o[k.to_cam] = r
       end
       o
     end
@@ -61,8 +69,10 @@ module RIQExtensions
       return {} if self.empty?
       o = {}
       self.each do |k,v| 
-        if v.is_a?(Array) && v.length > 0 && v.first.include?(:raw)
-          o[k.to_sym.to_snake] = v.first[:raw]
+        if v.is_a?(Array) # && v.length > 0 && v.first.include?(:raw)
+          r = v.map{|x| x[:raw]}
+          r = r.first if r.size == 1
+          o[k.to_sym.to_snake] = r
         else
           o[k.to_sym.to_snake] = v
         end

@@ -83,19 +83,22 @@ module RIQ
 
     # @overload field_value(key)
     #   @param key [String, Integer] 
-    #   @return [Array] Value of key
+    #   @return [String, Array] Value of key
     # @overload field_value(key, value)
     #   Sets key to value
     #   @param key [String, Integer] Key to set
-    #   @param value [#to_s] Sets key to value
+    #   @param value [String, Integer, Array] Sets key to value
     def field_value(key, value = nil)
       # TODO: double check that this works with arrays of stuff
       # or, have a format function that casts ints to string on save
       if value.nil?
         @field_values.fetch(key.to_sym, nil)
       else
-        @field_values[key.to_sym] = value.to_s
-        {key.to_sym => value.to_s}
+        unless value.is_a? Array
+          value = value.to_s
+        end
+        @field_values[key.to_sym] = value
+        {key.to_sym => value}
       end
     end
 
