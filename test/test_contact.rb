@@ -65,7 +65,7 @@ describe RIQ::Contact do
 
       @c.id.wont_be_nil
 
-      assert(@c.delete)
+      assert @c.delete
     end
   end
 
@@ -84,9 +84,9 @@ describe RIQ::Contact do
       begin
         @c.add(:name, {value: 'Jenny'})
       rescue RIQ::RIQError
-        assert(true)
+        assert true
       else
-        assert(false)
+        assert false
       end
     end
   end

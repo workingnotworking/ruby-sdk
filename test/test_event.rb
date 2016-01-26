@@ -28,9 +28,9 @@ describe RIQ::Event do
       begin
         @e.save
       rescue RIQ::HTTPError
-        assert(true)
+        assert true
       else
-        assert(false)
+        assert false
       end
     end
 
@@ -53,9 +53,9 @@ describe RIQ::Event do
       begin
         @e.add_participant(:blarg, 'bad type')
       rescue RIQ::RIQError
-        assert(true)
+        assert true
       else
-        assert(false)
+        assert false
       end
     end
   end

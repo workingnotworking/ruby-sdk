@@ -32,7 +32,7 @@ describe RIQ::ListItem do
       @blank.save
       @blank.id.wont_be_nil
 
-      assert(@blank.delete)
+      assert @blank.delete
     end
 
     it 'should update' do
@@ -51,7 +51,7 @@ describe RIQ::ListItem do
 
     it 'should handle picklists' do
       @li = create_first
-      start = @li.field_value(7)
+      start = @li.field_value(7).dup
       # tests are recorded, not sure if we need the switcher
       if start.size == 2
         # dup so we can add without affecting initial value
@@ -61,7 +61,7 @@ describe RIQ::ListItem do
       end
       @li.save
 
-      @li.field_value(7).size.wont_equal start
+      @li.field_value(7).size.wont_equal start.size
     end
 
     it 'should fail without a list id' do
@@ -69,9 +69,9 @@ describe RIQ::ListItem do
       begin
         @li.save
       rescue RIQ::RIQError
-        assert(true)
+        assert true
       else
-        assert(false)
+        assert false
       end
     end
   end
