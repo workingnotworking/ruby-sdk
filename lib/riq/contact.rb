@@ -115,6 +115,7 @@ module RIQ
     # Edits an existing object based on matching email(s) or saves a new object
     # @see RIQObject#save
     def upsert
+      # can only be email right now
       save({_upsert: 'email'})
     end
 

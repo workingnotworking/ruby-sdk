@@ -94,10 +94,12 @@ describe RIQ::Contact do
   describe '#upsert' do 
     it 'should upsert' do
       @sammy = create_sammy
-      # this could be better
-      @sammy.email.must_equal @sammy.upsert.email
+      id = @sammy.id
+      @sammy.id = nil
+      id.must_equal @sammy.upsert.id
 
-      # should add another assertion with the blank contact
+      # could add another assertion with the blank contact
+      # though, it's just save
     end
   end
 end
