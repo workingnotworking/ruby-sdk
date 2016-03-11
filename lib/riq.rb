@@ -59,7 +59,13 @@ module RIQExtensions
         else
           r = [{raw: v.to_s}]
         end
-        o[k.to_cam] = r
+
+        # this is the only user-visible snake_case key supplied by our api and it needs to stay that way
+        if k == :primary_contact
+          o[k] = r
+        else
+          o[k.to_cam] = r
+        end
       end
       o
     end
