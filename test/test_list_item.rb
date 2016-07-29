@@ -8,10 +8,10 @@ def create_first
   @l.list_items.first
 end
 
-describe RIQ::ListItem do
+describe SIQ::ListItem do
   before do
     lid = '578e5fbfe4b0572044e217ae'
-    @l = RIQ.list(lid)
+    @l = SIQ.list(lid)
   end
 
   describe '#field_value' do
@@ -28,7 +28,7 @@ describe RIQ::ListItem do
     it 'should create and delete' do
       @blank = create_blank_list_item
       @blank.field_value(0, 1)
-      @blank.contact_ids << RIQ.contacts.first.id
+      @blank.contact_ids << SIQ.contacts.first.id
       @blank.save
       @blank.id.wont_be_nil
 
@@ -65,10 +65,10 @@ describe RIQ::ListItem do
     end
 
     it 'should fail without a list id' do
-      @li = RIQ::ListItem.new
+      @li = SIQ::ListItem.new
       begin
         @li.save
-      rescue RIQ::RIQError
+      rescue SIQ::SIQError
         assert true
       else
         assert false
@@ -79,7 +79,7 @@ describe RIQ::ListItem do
   describe '#upsert' do
 
     it 'should upsert contact' do
-      fist_contact = RIQ.contacts.first
+      fist_contact = SIQ.contacts.first
 
       @blank = create_blank_list_item
       @blank.contact_ids << fist_contact.id.to_s# '578fcc6ae4b0cb3178c84e16'
@@ -90,10 +90,10 @@ describe RIQ::ListItem do
     end
 
     it 'should upsert account' do
-      fist_account = RIQ.accounts.first
+      fist_account = SIQ.accounts.first
 
       lid = '578e5fbfe4b0572044e217ae'
-      @list_account = RIQ.list(lid)
+      @list_account = SIQ.list(lid)
       @blank_list_item = @list_account.list_item
 
       @blank_list_item.account_id = fist_account.id.to_s

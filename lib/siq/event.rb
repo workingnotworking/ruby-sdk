@@ -1,24 +1,24 @@
-require_relative 'riq_obj'
-using RIQExtensions
+require_relative 'siq_obj'
+using SIQExtensions
 
-module RIQ
+module SIQ
   # Events represent interactions involving a Contact associated with a List Item. 
-  class Event < RIQObject
+  class Event < SIQObject
     attr_accessor :subject
     attr_accessor :body
     # attr_reader :participant_ids
 
-    # (see RIQObject#node)
+    # (see SIQObject#node)
     def node
       self.class.node
     end
 
-    # (see RIQObject#node)
+    # (see SIQObject#node)
     def self.node
       "events"
     end
     
-    # (see RIQObject#data)
+    # (see SIQObject#data)
     def data
       {
         subject: @subject,
@@ -30,7 +30,7 @@ module RIQ
     # @param type [Symbol] One of :email or :phone
     # @param value [String] An email or phone number for the contact
     def add_participant(type, value)
-      raise RIQError, 'Type must be :email or :phone' unless [:email, :phone].include?(type)
+      raise SIQError, 'Type must be :email or :phone' unless [:email, :phone].include?(type)
       @participant_ids << {type: type, value: value}
     end
 

@@ -1,8 +1,8 @@
 require_relative 'test_helper'
 
-describe RIQ::AccountProperties do
+describe SIQ::AccountProperties do
   before do
-    @p = RIQ.account_props
+    @p = SIQ.account_props
   end
 
   describe '#initialize' do

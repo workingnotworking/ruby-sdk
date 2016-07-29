@@ -1,9 +1,9 @@
-require_relative 'riq_obj'
-using RIQExtensions
+require_relative 'siq_obj'
+using SIQExtensions
 
-module RIQ
+module SIQ
   # A List Item is a row in a List.
-  class ListItem < RIQObject
+  class ListItem < SIQObject
     attr_accessor :name
     attr_accessor :field_values
     attr_accessor :account_id
@@ -15,9 +15,9 @@ module RIQ
 
     # @example create a list item
     #   # vanilla
-    #   RIQ::ListItem.new
+    #   SIQ::ListItem.new
     #   # with a list id
-    #   RIQ::ListItem(lid: 'abc123') # OR RIQ.list('abc123').list_item
+    #   SIQ::ListItem(lid: 'abc123') # OR SIQ.list('abc123').list_item
     def initialize(id = nil, lid: nil)
       if id.is_a? Hash
         # init with data
@@ -29,14 +29,14 @@ module RIQ
         @list_id = lid unless lid.nil?
       elsif lid.nil?
         # has id, but not lid, that's an error
-        raise RIQError, 'ObjectID and List ID are required'
+        raise SIQError, 'ObjectID and List ID are required'
       else
         # grabbing a specific listitem, fetch it
         super("#{lid}/listitems/#{id}")
       end
     end
 
-    # (see RIQObject#node)
+    # (see SIQObject#node)
     def node
       self.class.node(@list_id, @id)
     end
@@ -53,7 +53,7 @@ module RIQ
       end
     end
 
-    # (see RIQObject#data)
+    # (see SIQObject#data)
     def data
       {
           name: @name,
@@ -66,7 +66,7 @@ module RIQ
       }
     end
 
-    # (see RIQObject#payload)
+    # (see SIQObject#payload)
     def payload
       pld = {}
       data.each do |k, v|
@@ -82,7 +82,7 @@ module RIQ
     end
 
     # Edits an existing object based on matching email(s) or saves a new object
-    # @see RIQObject#save
+    # @see SIQObject#save
     def upsert(option)
       # can only be email right now
       if option == 'contact_ids'
@@ -140,7 +140,7 @@ module RIQ
 
     def pre_save
       if @list_id.nil?
-        raise RIQError, 'List ID is required'
+        raise SIQError, 'List ID is required'
       end
     end
   end

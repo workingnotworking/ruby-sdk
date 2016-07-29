@@ -1,14 +1,14 @@
 require_relative 'test_helper'
 
 def create_blank_event
-  RIQ.event
+  SIQ.event
 end
 
 def create_data_event
-  RIQ.event({subject: "My Sub", body: "Bodily harm", 'participantIds' => [{type: :email, value: 'fake@fakerelateiq.com'}]})
+  SIQ.event({subject: "My Sub", body: "Bodily harm", 'participantIds' => [{type: :email, value: 'fake@fakerelateiq.com'}]})
 end
 
-describe RIQ::Event do
+describe SIQ::Event do
   describe '#new' do
     it 'should start blank' do
       @e = create_blank_event
@@ -27,7 +27,7 @@ describe RIQ::Event do
       @e = create_blank_event
       begin
         @e.save
-      rescue RIQ::HTTPError
+      rescue SIQ::HTTPError
         assert true
       else
         assert false
@@ -52,7 +52,7 @@ describe RIQ::Event do
       @e = create_blank_event
       begin
         @e.add_participant(:blarg, 'bad type')
-      rescue RIQ::RIQError
+      rescue SIQ::SIQError
         assert true
       else
         assert false

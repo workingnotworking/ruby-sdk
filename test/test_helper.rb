@@ -2,18 +2,18 @@ require 'minitest/autorun'
 require 'vcr'
 
 # this is so it plays nice with travis
-unless ENV['RIQ_TEST_API_KEY'] && ENV['RIQ_TEST_API_SECRET']
+unless ENV['SIQ_TEST_API_KEY'] && ENV['SIQ_TEST_API_SECRET']
   require 'dotenv'
   Dotenv.load
 end
 
 # use directory, not locally installed copy
-require_relative '../lib/riq'
+require_relative '../lib/siq'
 
 $LOAD_PATH.unshift(File.dirname(__FILE__))
 
 class Minitest::Test
-  RIQ.init(ENV['RIQ_TEST_API_KEY'], ENV['RIQ_TEST_API_SECRET'])
+  SIQ.init(ENV['SIQ_TEST_API_KEY'], ENV['SIQ_TEST_API_SECRET'])
 end
 
 require "codeclimate-test-reporter"
@@ -28,8 +28,8 @@ VCR.configure do |c|
   }
 
   c.cassette_library_dir = 'vcr_cassettes'
-  c.filter_sensitive_data('<API_KEY>') { ENV['RIQ_TEST_API_KEY'] }
-  c.filter_sensitive_data('<API_SECRET>') { ENV['RIQ_TEST_API_SECRET'] }
+  c.filter_sensitive_data('<API_KEY>') { ENV['SIQ_TEST_API_KEY'] }
+  c.filter_sensitive_data('<API_SECRET>') { ENV['SIQ_TEST_API_SECRET'] }
 
   c.hook_into :webmock
   c.before_record do |request|

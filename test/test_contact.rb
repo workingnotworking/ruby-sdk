@@ -1,18 +1,18 @@
 require_relative 'test_helper'
 
 def create_sammy
-  RIQ.contact('579bb1d3e4b0cb31c3328e56')
+  SIQ.contact('579bb1d3e4b0cb31c3328e56')
 end
 
 def create_blank_contact
-  RIQ.contact  
+  SIQ.contact
 end
 
 def create_data
-  RIQ.contact({properties: {'name' => ['david'], email: ['dab@relateiq.com']}})
+  SIQ.contact({properties: {'name' => ['david'], email: ['dab@relateiq.com']}})
 end
 
-describe RIQ::Contact do
+describe SIQ::Contact do
   describe '#new' do
     it 'should get account' do
       @sammy = create_sammy
@@ -84,7 +84,7 @@ describe RIQ::Contact do
 
       begin
         @c.add(:name, {value: 'Jenny'})
-      rescue RIQ::RIQError
+      rescue SIQ::SIQError
         assert true
       else
         assert false

@@ -1,24 +1,24 @@
-require_relative 'riq_obj'
-using RIQExtensions
+require_relative 'siq_obj'
+using SIQExtensions
 
-module RIQ
+module SIQ
   # Contacts represent people in an Organization’s address book.
-  class Contact < RIQObject
+  class Contact < SIQObject
     attr_accessor :properties
     attr_reader :state
     attr_reader :modified_date
 
-    # (see RIQObject#node)
+    # (see SIQObject#node)
     def node
       self.class.node(@id)
     end
 
-    # (see RIQObject.node)
+    # (see SIQObject.node)
     def self.node(id = nil)
       "contacts/#{id}"
     end
     
-    # (see RIQObject#data)
+    # (see SIQObject#data)
     def data
       {
           id: @id,
@@ -86,7 +86,7 @@ module RIQ
         return
       end
 
-      raise RIQError, 'Values must be strings' unless val.is_a?(String)
+      raise SIQError, 'Values must be strings' unless val.is_a?(String)
 
       # don't add duplicate 
       if @properties[prop].select{|p| p[:value] == val}.empty?
@@ -116,7 +116,7 @@ module RIQ
     end
 
     # Edits an existing object based on matching email(s) or saves a new object
-    # @see RIQObject#save
+    # @see SIQObject#save
     def upsert
       # can only be email right now
       save({_upsert: 'email'})
@@ -141,7 +141,7 @@ module RIQ
         @state = obj[:state] if obj[:state]
 
         obj[:properties].each do |k, v|
-          raise RIQError, "Properties must be arrays, #{k} wasn't" unless v.is_a?(Array)
+          raise SIQError, "Properties must be arrays, #{k} wasn't" unless v.is_a?(Array)
 
           v.each do |i|
             if i.is_a?(Hash)
@@ -163,7 +163,7 @@ module RIQ
 
     # unused because we actually put all sorts of stuff in there
     def validate(prop)
-      raise RIQError, %q(Invalid property. Use [:name | :phone | :email | :address] instead) unless [:name, :phone, :email, :address].include?(prop)
+      raise SIQError, %q(Invalid property. Use [:name | :phone | :email | :address] instead) unless [:name, :phone, :email, :address].include?(prop)
     end
 
     def get_prop(prop)

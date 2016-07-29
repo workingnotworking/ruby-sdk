@@ -1,6 +1,6 @@
 require_relative 'test_helper'
 
-describe RIQ::BatchManager do
+describe SIQ::BatchManager do
   before do
     @c = 0
   end
@@ -8,7 +8,7 @@ describe RIQ::BatchManager do
   describe '#accounts' do
     it 'should get all accounts' do
       # could limit this, but want it to make sure the default works
-      accounts = RIQ.accounts
+      accounts = SIQ.accounts
       accounts.each do |a|
         a.id.wont_be_nil
         a.name.wont_be_nil
@@ -21,7 +21,7 @@ describe RIQ::BatchManager do
 
   describe '#contacts' do 
     it 'should get all contacts' do
-      contacts = RIQ.contacts({_limit: 3})
+      contacts = SIQ.contacts({_limit: 3})
       contacts.each do |con|
         con.id.wont_be_nil
         @c += 1
@@ -34,7 +34,7 @@ describe RIQ::BatchManager do
 
   describe '#lists' do
     it 'should get all lists' do
-      lists = RIQ.lists
+      lists = SIQ.lists
       lists.each do |l|
         l.id.wont_be_nil
         l.title.wont_be_nil
@@ -56,13 +56,13 @@ describe RIQ::BatchManager do
   describe '#first' do 
     it 'should get one contact' do
       c = nil
-      c = RIQ.contacts.first
-      c.must_be_instance_of RIQ::Contact
+      c = SIQ.contacts.first
+      c.must_be_instance_of SIQ::Contact
     end
 
     it 'should not change fetch options' do
       opts = {_limit: 15, _ids: '5620d440e4b01bbcd7f9e7c9'}
-      bm = RIQ.contacts(opts)
+      bm = SIQ.contacts(opts)
       bm.first
       bm.fetch_options.must_equal bm.fetch_options.merge(opts)
     end
@@ -70,7 +70,7 @@ describe RIQ::BatchManager do
 
   describe '#fetch_options' do 
     it 'should respect limits' do 
-      b = RIQ.contacts({_ids: ['579bb1d3e4b0cb31c3328e56','578f836ce4b006015a54daea']})
+      b = SIQ.contacts({_ids: ['579bb1d3e4b0cb31c3328e56','578f836ce4b006015a54daea']})
       b.each do |i|
         @c += 1
       end

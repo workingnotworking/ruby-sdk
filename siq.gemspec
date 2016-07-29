@@ -1,7 +1,7 @@
 # coding: utf-8
 
 Gem::Specification.new do |spec|
-  spec.name          = 'riq'
+  spec.name          = 'siq'
   spec.version       = '1.2.7'
   spec.authors       = ['David Brownman']
   spec.email         = ['dbrownman@salesforce.com']

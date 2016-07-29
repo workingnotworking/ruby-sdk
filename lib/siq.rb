@@ -1,11 +1,11 @@
 # The namespace from which all magic springs
-module RIQ
+module SIQ
   # Could fetch defaults or something here
 end
 
 # Monkeypatches
 # cry about it, nerd
-module RIQExtensions
+module SIQExtensions
   refine Symbol do
     def to_cam
       temp = self.to_s.split('_').map(&:capitalize).join
@@ -46,7 +46,7 @@ module RIQExtensions
   end
 
   refine Hash do
-    # Converts to RIQ API's [{raw: "VALUE"}] format
+    # Converts to SIQ API's [{raw: "VALUE"}] format
     def to_raw
       return {} if self.empty?
       o = {}
@@ -72,7 +72,7 @@ module RIQExtensions
       o
     end
 
-    # Converts from RIQ API's [{raw: "VALUE"}] format
+    # Converts from SIQ API's [{raw: "VALUE"}] format
     def from_raw
       return {} if self.empty?
       o = {}
@@ -119,4 +119,4 @@ module RIQExtensions
 end
 
 # Base file from which everything else is included
-Dir[__dir__ + '/riq/*.rb'].each {|file| require file }
+Dir[__dir__ + '/siq/*.rb'].each {|file| require file }

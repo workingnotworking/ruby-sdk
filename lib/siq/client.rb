@@ -2,10 +2,10 @@ require 'httparty'
 require 'json'
 require_relative 'error'
 
-module RIQ
+module SIQ
   # HTTP client responsible for actually handling the HTTP requests.
   # @note Utility class to perform HTTP requests. This shouldn't be
-  #   instantiated directly but used by children of RIQObject instead.
+  #   instantiated directly but used by children of SIQObject instead.
   class Client
     attr_accessor :cache
 
@@ -76,7 +76,7 @@ module RIQ
         )
       else
         # this shouldn't ever get hit?
-        raise RIQError, 'Invalid method'
+        raise SIQError, 'Invalid method'
       end
       
       # HTTParty response object
@@ -112,19 +112,19 @@ module RIQ
   class << self  
     # @param key [String] SalesforceIQ API key
     # @param secret [String] SalesforceIQ API secret
-    # @return [RIQ] The module, in case you want it.
+    # @return [SIQ] The module, in case you want it.
     def init(key = nil, secret = nil)
-      key ||= ENV['RIQ_TEST_API_KEY']
-      secret ||= ENV['RIQ_TEST_API_SECRET']
+      key ||= ENV['SIQ_TEST_API_KEY']
+      secret ||= ENV['SIQ_TEST_API_SECRET']
 
       @@client = Client.new(key, secret)
       self
     end
 
-    # Always use RIQ.client to retrieve the client object.
+    # Always use SIQ.client to retrieve the client object.
     # @return [Client] The client object
     def client
-      raise RIQError, 'Client not initialized' unless defined?(@@client)
+      raise SIQError, 'Client not initialized' unless defined?(@@client)
       @@client
     end
   end

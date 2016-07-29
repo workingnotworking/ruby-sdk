@@ -1,17 +1,17 @@
-require_relative 'riq_obj'
+require_relative 'siq_obj'
 
-module RIQ
+module SIQ
   # Users are represented by owners and contacts in your SalesforceIQ organization
-  class User < RIQObject
+  class User < SIQObject
     attr_accessor :name
     attr_accessor :email
 
-    # (see RIQObject#node)
+    # (see SIQObject#node)
     def node
       "users/#{@id}"
     end
 
-    # (see RIQObject#data)
+    # (see SIQObject#data)
     def data
       {
         id: @id,
@@ -46,7 +46,7 @@ module RIQ
     #   fetch an existing one by id.
     # @return [User]
     def user(id = nil)
-      RIQ::User.new(id)
+      SIQ::User.new(id)
     end
   end
 end

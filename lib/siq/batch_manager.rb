@@ -1,27 +1,27 @@
-using RIQExtensions
+using SIQExtensions
 
-module RIQ
+module SIQ
   # Manages caching and fetching for a certain type of child object.
   class BatchManager
     # @return [Hash] current fetch options
     attr_reader :fetch_options
 
-    # @param klass [RIQObject] The child class that's being fetched, such as {Account} or {List}
+    # @param klass [SIQObject] The child class that's being fetched, such as {Account} or {List}
     # @param opts [Hash] fetch options
     def initialize(klass, opts = {})
       @klass = klass
-      raise(RIQError, 'Must pass a RIQ Class') unless @klass.ancestors.include?(RIQ::RIQObject)
+      raise(SIQError, 'Must pass a SIQ Class') unless @klass.ancestors.include?(SIQ::SIQObject)
       @fetch_options = {}
       reset_cache
       
       # cause otherwise it's a variable
       self.send(:fetch_options=, opts)
-      @client = RIQ.client
+      @client = SIQ.client
     end
 
     # Iterator for each item in the manager. Pass a block to it!
     # @example
-    #   RIQ.lists.each do |l|
+    #   SIQ.lists.each do |l|
     #     puts l
     #   end
     def each(&blok)
@@ -37,7 +37,7 @@ module RIQ
     end
 
     # Returns the first child object, mainly used for testing
-    # @return [RIQObject]
+    # @return [SIQObject]
     def first
       reset_cache
       o = fetch_options.dup
@@ -117,17 +117,17 @@ module RIQ
 
     # @macro conv
     def lists(opts = {})
-      BatchManager.new(RIQ::List, opts)
+      BatchManager.new(SIQ::List, opts)
     end
 
     # @macro conv
     def contacts(opts = {})
-      BatchManager.new(RIQ::Contact, opts)
+      BatchManager.new(SIQ::Contact, opts)
     end
 
     # @macro conv
     def accounts(opts = {})
-      BatchManager.new(RIQ::Account, opts)
+      BatchManager.new(SIQ::Account, opts)
     end
   end
 end

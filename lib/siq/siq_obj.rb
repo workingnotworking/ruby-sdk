@@ -1,17 +1,17 @@
 require_relative 'client'
-using RIQExtensions
+using SIQExtensions
 
-module RIQ
+module SIQ
   # @abstract This class should not be used directly. 
   #   Instead, use a child such as {Contact} or {List}.
-  class RIQObject
+  class SIQObject
     attr_accessor :id
     attr_reader :modified_date
 
     # @param id [String, Hash] ObjectId or well-formatted hash of data (usually provided by another object
-    # @return [RIQObject] Self
+    # @return [SIQObject] Self
     def initialize(id = nil)
-      @client = RIQ.client
+      @client = SIQ.client
       @id = id
 
       unless @id.nil?
@@ -31,18 +31,18 @@ module RIQ
 
     # @return [String] endpoint
     def node
-      raise RIQError, 'This should be overwritten'
+      raise SIQError, 'This should be overwritten'
     end
 
     # @param id [String] ObjectId
     # @return [String] endpoint
     def self.node(id = nil)
-      raise RIQError, 'This should be overwritten'
+      raise SIQError, 'This should be overwritten'
     end    
 
     # @return [Hash] all relevant stored data
     def data
-      raise RIQError, 'This should be overwritten'
+      raise SIQError, 'This should be overwritten'
     end
     
     # @return [String] the JSON representation of {#data}
@@ -90,7 +90,7 @@ module RIQ
 
     private
     def init
-      raise RIQError, 'This should be overwritten'
+      raise SIQError, 'This should be overwritten'
     end
 
     def pre_save

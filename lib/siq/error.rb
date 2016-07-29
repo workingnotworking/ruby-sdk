@@ -1,18 +1,18 @@
-module RIQ
+module SIQ
   # Base exception class for our errors.
-  class RIQError < StandardError
+  class SIQError < StandardError
   end
 
   # Hasn't been implemented yet. Doesn't get used often.
-  class NotImplementedError < RIQError
+  class NotImplementedError < SIQError
   end
 
   # Raised when an ObjectId fetch doesn't return anything.
-  class NotFoundError < RIQError
+  class NotFoundError < SIQError
   end
 
   # Main error that includes info about the request and what went wrong. 
-  class HTTPError < RIQError
+  class HTTPError < SIQError
     attr_accessor :code
     attr_accessor :message
     attr_accessor :response

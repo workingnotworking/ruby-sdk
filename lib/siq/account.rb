@@ -1,13 +1,13 @@
-require_relative 'riq_obj'
-using RIQExtensions
+require_relative 'siq_obj'
+using SIQExtensions
 
-module RIQ
+module SIQ
   # Accounts represent companies (or other entities).
-  class Account < RIQObject
+  class Account < SIQObject
     attr_accessor :name
     attr_accessor :field_values
 
-    # (see RIQObject#node)
+    # (see SIQObject#node)
     def node
       "accounts/#{@id}"
     end
@@ -17,7 +17,7 @@ module RIQ
       "accounts"
     end
 
-    # (see RIQObject#data)
+    # (see SIQObject#data)
     def data
       {
         id: @id,
@@ -26,7 +26,7 @@ module RIQ
       }
     end
 
-    # (see RIQObject#payload)
+    # (see SIQObject#payload)
     def payload
       # TODO: find more elegant way to do this
       pld = data

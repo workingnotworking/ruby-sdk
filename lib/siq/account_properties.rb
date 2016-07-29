@@ -1,22 +1,22 @@
-using RIQExtensions
+using SIQExtensions
 
-module RIQ
+module SIQ
   # Simple object for retrieving your org-wide account properties. The object is read only and provides only fetch and convenience methods.
   class AccountProperties
     attr_reader :data
 
     # Performs a network call and fetches the account properties for the org.
     def initialize
-      @client = RIQ.client
+      @client = SIQ.client
       d = @client.get(node).symbolize
       if d
         @data = d[:fields]
       else
-        raise RIQError, 'No account properties found'
+        raise SIQError, 'No account properties found'
       end
     end
 
-    # (see RIQObject#node)
+    # (see SIQObject#node)
     def node
       'accounts/fields'
     end

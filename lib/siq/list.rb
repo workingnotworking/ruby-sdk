@@ -1,9 +1,9 @@
-require_relative 'riq_obj'
+require_relative 'siq_obj'
 
-module RIQ
+module SIQ
   # A List is an object that can be created and customized by a User to represent 
   # Accounts (companies) or Contacts (people) in a process (such as a sales pipeline).
-  class List < RIQObject
+  class List < SIQObject
     # can't create a list through API, so these don't need to write
     attr_reader :title
     attr_reader :type
@@ -12,23 +12,23 @@ module RIQ
     # for consistency
     alias_method :name, :title
 
-    # (see RIQObject#initialize)
+    # (see SIQObject#initialize)
     def initialize(id = nil)
       super
       @list_items = ListItemManager.new(@id)
     end
 
-    # (see RIQObject#node)
+    # (see SIQObject#node)
     def node
       self.class.node(@id)
     end
 
-    # (see RIQObject.node)
+    # (see SIQObject.node)
     def self.node(id = nil)
       "lists/#{id}"
     end
 
-    # (see RIQObject#data)
+    # (see SIQObject#data)
     def data
       {
         id: @id,
@@ -58,7 +58,7 @@ module RIQ
     # Convenience method for fetching or creating a listitem from the given list
     # @param oid [String, nil] ObjectId
     def list_item(oid = nil)
-      RIQ::ListItem.new(oid, lid: @id)
+      SIQ::ListItem.new(oid, lid: @id)
     end
 
     private

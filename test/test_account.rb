@@ -1,18 +1,18 @@
 require_relative 'test_helper'
 
 def create_netflix
-  RIQ.account('579bb41fe4b01648f2d7e7a9')
+  SIQ.account('579bb41fe4b01648f2d7e7a9')
 end
 
 def create_blank_account
-  RIQ.account
+  SIQ.account
 end
 
 def create_data_account
-  RIQ.account({name: 'Glengarry', field_values: {'0' => 3}})
+  SIQ.account({name: 'Glengarry', field_values: {'0' => 3}})
 end
 
-describe RIQ::Account do
+describe SIQ::Account do
   describe '#new' do
     it 'should get account' do
       @netflix = create_netflix
