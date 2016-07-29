@@ -1,7 +1,7 @@
 require_relative 'test_helper'
 
 def create_sammy
-  RIQ.contact('5620d6ade4b01bbcd7f9e7d5')
+  RIQ.contact('579bb1d3e4b0cb31c3328e56')
 end
 
 def create_blank_contact
@@ -16,7 +16,7 @@ describe RIQ::Contact do
   describe '#new' do
     it 'should get account' do
       @sammy = create_sammy
-      @sammy.name.must_include 'Sammy Nammari'
+      @sammy.name.must_include 'James McSales'
     end
 
     it 'should make blank contact' do
@@ -32,28 +32,28 @@ describe RIQ::Contact do
   describe '#name' do
     it 'returns an array of property values' do
       @sammy = create_sammy
-      @sammy.name.must_equal ['Sammynammari', 'Sammy Nammari']
+      @sammy.name.must_equal ['James McSales']
     end
   end
 
   describe '#primary_name' do
     it 'returns the preferred property value' do
       @sammy = create_sammy
-      @sammy.primary_name.must_equal 'Sammy Nammari'
+      @sammy.primary_name.must_equal 'James McSales'
     end
   end
 
   describe '#email' do
     it 'returns an array of property values' do
       @sammy = create_sammy
-      @sammy.email.must_equal ['sammy.nammari@gmail.com', 'nammari@stanford.edu', 'sammy@relateiq.com']
+      @sammy.email.must_equal ['james.mcsales@salesforceiq.com', 'jimmy@personal.com']
     end
   end
 
   describe '#primary_email' do
     it 'returns the preferred property value' do
       @sammy = create_sammy
-      @sammy.primary_email.must_equal 'sammy@relateiq.com'
+      @sammy.primary_email.must_equal 'james.mcsales@salesforceiq.com'
     end
   end
 
@@ -64,6 +64,7 @@ describe RIQ::Contact do
       @c.save
 
       @c.id.wont_be_nil
+      @c.state.wont_be_nil
 
       assert @c.delete
     end
@@ -72,7 +73,7 @@ describe RIQ::Contact do
   describe 'properties' do 
     it "should add new emails only if they're new" do
       @sammy = create_sammy
-      @sammy.email.must_equal @sammy.add(:email, 'nammari@stanford.edu')
+      @sammy.email.must_equal @sammy.add(:email, 'jimmy@personal.com')
 
       @sammy.email.wont_equal @sammy.add(:email, 'jammari@stanford.edu')      
     end

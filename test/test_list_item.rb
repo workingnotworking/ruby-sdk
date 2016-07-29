@@ -10,7 +10,7 @@ end
 
 describe RIQ::ListItem do
   before do
-    lid = '5620d3e8e4b01bbcd7f9e7b2'
+    lid = '578e5fbfe4b0572044e217ae'
     @l = RIQ.list(lid)
   end
 
@@ -51,17 +51,17 @@ describe RIQ::ListItem do
 
     it 'should handle picklists' do
       @li = create_first
-      start = @li.field_value(7).dup
+      start = @li.field_value(10).dup
       # tests are recorded, not sure if we need the switcher
       if start.size == 2
         # dup so we can add without affecting initial value
-        @li.field_value(7, start.dup << 3)
+        @li.field_value(10, start.dup << 1)
       else
-        @li.field_value(7).pop
+        @li.field_value(10).pop
       end
       @li.save
 
-      @li.field_value(7).size.wont_equal start.size
+      @li.field_value(10).size.wont_equal start.size
     end
 
     it 'should fail without a list id' do
@@ -73,6 +73,34 @@ describe RIQ::ListItem do
       else
         assert false
       end
+    end
+  end
+
+  describe '#upsert' do
+
+    it 'should upsert contact' do
+      fist_contact = RIQ.contacts.first
+
+      @blank = create_blank_list_item
+      @blank.contact_ids << fist_contact.id.to_s# '578fcc6ae4b0cb3178c84e16'
+      @blank.field_value(0,1)
+      updsert_obj = @blank.upsert('contact_ids')
+      fist_contact.id.must_equal updsert_obj.contact_ids[0]
+
+    end
+
+    it 'should upsert account' do
+      fist_account = RIQ.accounts.first
+
+      lid = '578e5fbfe4b0572044e217ae'
+      @list_account = RIQ.list(lid)
+      @blank_list_item = @list_account.list_item
+
+      @blank_list_item.account_id = fist_account.id.to_s
+      @blank_list_item.name = "New Name from Ruby"
+      @blank_list_item.field_value(0,2)
+      upsert_obj = @blank_list_item.upsert('account_id')
+      fist_account.id.must_equal upsert_obj.account_id
     end
   end
 end

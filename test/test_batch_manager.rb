@@ -70,7 +70,7 @@ describe RIQ::BatchManager do
 
   describe '#fetch_options' do 
     it 'should respect limits' do 
-      b = RIQ.contacts({_ids: ['5620d44ee4b01bbcd7f9e7cf','5620d440e4b01bbcd7f9e7c9']})
+      b = RIQ.contacts({_ids: ['579bb1d3e4b0cb31c3328e56','578f836ce4b006015a54daea']})
       b.each do |i|
         @c += 1
       end

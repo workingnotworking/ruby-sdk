@@ -56,13 +56,13 @@ module RIQ
     # (see RIQObject#data)
     def data
       {
-        name: @name,
-        account_id: @account_id,
-        contact_ids: @contact_ids.flatten,
-        id: @id,
-        list_id: @list_id,
-        field_values: @field_values,
-        modified_date: @modified_date
+          name: @name,
+          account_id: @account_id,
+          contact_ids: @contact_ids.flatten,
+          id: @id,
+          list_id: @list_id,
+          field_values: @field_values,
+          modified_date: @modified_date
       }
     end
 
@@ -79,6 +79,17 @@ module RIQ
         end
       end
       pld.to_json
+    end
+
+    # Edits an existing object based on matching email(s) or saves a new object
+    # @see RIQObject#save
+    def upsert(option)
+      # can only be email right now
+      if option == 'contact_ids'
+        save({_upsert: 'contactIds'})
+      elsif option == 'account_id'
+        save({_upsert: 'accountId'})
+      end
     end
 
     # @overload field_value(key)
@@ -113,7 +124,7 @@ module RIQ
         @account_id = obj[:account_id]
         @contact_ids = obj[:contact_ids] || []
         @modified_date = obj[:modified_date].cut_milis if obj[:modified_date]
-        @created_date = obj[:creaeted_date].cut_milis if obj[:creaeted_date]
+        @created_date = obj[:created_date].cut_milis if obj[:created_date]
       else
         @id = nil
         @list_id = nil

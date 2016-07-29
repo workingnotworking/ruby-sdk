@@ -61,7 +61,9 @@ module RIQExtensions
         end
 
         # this is the only user-visible snake_case key supplied by our api and it needs to stay that way
-        if k == :primary_contact
+        not_change_keys = [:primary_contact, :address_city, :address_state, :address_postal_code, :address_country]
+
+        if not_change_keys.include?(k.to_sym)
           o[k] = r
         else
           o[k.to_cam] = r

@@ -13,7 +13,7 @@ describe RIQ::AccountProperties do
 
   describe '#field' do
     it 'should return a value if appropreate' do
-      @p.field(3).wont_be_nil
+      @p.field('address').wont_be_nil
       @p.field('blah').must_be_nil
     end
   end

@@ -5,6 +5,8 @@ module RIQ
   # Contacts represent people in an Organization’s address book.
   class Contact < RIQObject
     attr_accessor :properties
+    attr_reader :state
+    attr_reader :modified_date
 
     # (see RIQObject#node)
     def node
@@ -19,9 +21,10 @@ module RIQ
     # (see RIQObject#data)
     def data
       {
-        id: @id,
-        properties: @properties
-        # modified_date: @modified_date
+          id: @id,
+          #modified_date: @modified_date,
+          properties: @properties,
+          #state: @state
       }
     end
 
@@ -135,21 +138,25 @@ module RIQ
         @id = obj[:id]
         @modified_date = obj[:modified_date].cut_milis if obj[:modified_date]
         @properties = {}
-        obj[:properties].each do |k,v|
+        @state = obj[:state] if obj[:state]
+
+        obj[:properties].each do |k, v|
           raise RIQError, "Properties must be arrays, #{k} wasn't" unless v.is_a?(Array)
 
           v.each do |i|
-            unless i.is_a?(Hash)
-              add(k, i)
-            else
+            if i.is_a?(Hash)
               @properties[k] = [] unless @properties.include?(k)
               @properties[k] << i
+            else
+              add(k, i)
             end
           end
         end
       else
         @id = nil
+        @modified_date = 0
         @properties = {}
+        @state = nil
       end
       self
     end

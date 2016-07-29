@@ -8,6 +8,7 @@ module RIQ
     attr_reader :title
     attr_reader :type
     attr_reader :list_items
+    attr_reader :modified_date
     # for consistency
     alias_method :name, :title
 
@@ -33,7 +34,8 @@ module RIQ
         id: @id,
         title: @title,
         type: @type,
-        fields: @fields
+        fields: @fields,
+        modified_date: @modified_date
       }
     end
 
@@ -62,16 +64,18 @@ module RIQ
     private
     
     def init(obj = nil)
-      unless obj.nil?
-        @id = obj[:id]
-        @title = obj[:title]
-        @type = obj[:listType]
-        @fields = obj[:fields]
-      else
+      if obj.nil?
         @id = nil
         @title = nil
         @type = nil
         @fields = nil
+        @modified_date = 0 #TODO MARCOS Always returns 0
+      else
+        @id = obj[:id]
+        @title = obj[:title]
+        @type = obj[:list_type]
+        @fields = obj[:fields]
+        @modified_date = obj[:modified_date]
       end
       self
     end

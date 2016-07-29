@@ -1,7 +1,7 @@
 require_relative 'test_helper'
 
 def create_netflix
-  RIQ.account('5620d57de4b01bbcd7f9e7d2')
+  RIQ.account('579bb41fe4b01648f2d7e7a9')
 end
 
 def create_blank_account
@@ -39,12 +39,35 @@ describe RIQ::Account do
 
       @a.id.wont_be_nil
     end
+    it 'should create new account all fields values' do
+      @a = create_blank_account
+      @a.name = 'Delete Test Inc (all values)'
+
+      @a.field_value('address', 'New York, NY, USA')
+      #@a.field_value('primary_contact', 'Address Ruby primary_contact')
+      @a.field_value('address_city', 'NY')
+      @a.field_value('address_state', 'New York')
+      @a.field_value('address_postal_code', '95184')
+      @a.field_value('address_country', 'United States')
+
+      @a.save
+
+      @a.id.wont_be_nil
+      @a.field_values[:address].wont_be_nil
+      #@a.field_values[:primary_contact].wont_be_nil
+      @a.field_values[:address_city].wont_be_nil
+      @a.field_values[:address_state].wont_be_nil
+      @a.field_values[:address_postal_code].wont_be_nil
+      @a.field_values[:address_country].wont_be_nil
+
+    end
+
   end
 
   describe "#field_value" do
     it 'should fetch a field value' do 
       @netflix = create_netflix
-      @netflix.field_value(2).wont_be_nil
+      @netflix.field_value('address').wont_be_nil
       @dat = create_data_account
       @dat.field_value(0).wont_be_nil
     end
