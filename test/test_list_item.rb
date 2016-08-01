@@ -79,13 +79,13 @@ describe SIQ::ListItem do
   describe '#upsert' do
 
     it 'should upsert contact' do
-      fist_contact = SIQ.contacts.first
+      first_contact = SIQ.contacts.first
 
       @blank = create_blank_list_item
-      @blank.contact_ids << fist_contact.id.to_s# '578fcc6ae4b0cb3178c84e16'
+      @blank.contact_ids << first_contact.id.to_s # '578fcc6ae4b0cb3178c84e16'
       @blank.field_value(0,1)
-      updsert_obj = @blank.upsert('contact_ids')
-      fist_contact.id.must_equal updsert_obj.contact_ids[0]
+      upsert_obj = @blank.upsert('contact_ids')
+      first_contact.id.must_equal upsert_obj.contact_ids[0]
 
     end
 

@@ -81,7 +81,7 @@ module SIQ
       pld.to_json
     end
 
-    # Edits an existing object based on matching email(s) or saves a new object
+    # Updates an existing object based on matching email(s) or saves a new object
     # @see SIQObject#save
     def upsert(option)
       # can only be email right now

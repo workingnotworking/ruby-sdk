@@ -69,7 +69,7 @@ module SIQ
         @title = nil
         @type = nil
         @fields = nil
-        @modified_date = 0 #TODO MARCOS Always returns 0
+        @modified_date = 0
       else
         @id = obj[:id]
         @title = obj[:title]

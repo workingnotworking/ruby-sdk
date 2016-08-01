@@ -39,7 +39,7 @@ describe SIQ::Account do
 
       @a.id.wont_be_nil
     end
-    it 'should create new account all fields values' do
+    it 'should create new account populating all fields values' do
       @a = create_blank_account
       @a.name = 'Delete Test Inc (all values)'
 
