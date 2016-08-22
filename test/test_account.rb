@@ -39,12 +39,15 @@ describe SIQ::Account do
 
       @a.id.wont_be_nil
     end
+
     it 'should create new account populating all fields values' do
+      contact = SIQ.contact('579bb1d3e4b0cb31c3328e56')
+
       @a = create_blank_account
       @a.name = 'Delete Test Inc (all values)'
 
       @a.field_value('address', 'New York, NY, USA')
-      #@a.field_value('primary_contact', 'Address Ruby primary_contact')
+      @a.field_value('primary_contact', contact.id)
       @a.field_value('address_city', 'NY')
       @a.field_value('address_state', 'New York')
       @a.field_value('address_postal_code', '95184')
@@ -54,7 +57,7 @@ describe SIQ::Account do
 
       @a.id.wont_be_nil
       @a.field_values[:address].wont_be_nil
-      #@a.field_values[:primary_contact].wont_be_nil
+      @a.field_values[:primary_contact].wont_be_nil
       @a.field_values[:address_city].wont_be_nil
       @a.field_values[:address_state].wont_be_nil
       @a.field_values[:address_postal_code].wont_be_nil

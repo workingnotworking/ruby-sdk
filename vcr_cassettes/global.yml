@@ -1073,4 +1073,44 @@ http_interactions:
       string: ''
     http_version: 
   recorded_at: Fri, 29 Jul 2016 21:15:32 GMT
+- request:
+    method: post
+    uri: https://<API_KEY>:<API_SECRET>@api.salesforceiq.com/v2/accounts/
+    body:
+      encoding: UTF-8
+      string: '{"id":null,"name":"Delete Test Inc (all values)","fieldValues":{"address":[{"raw":"New
+        York, NY, USA"}],"primary_contact":[{"raw":"579bb1d3e4b0cb31c3328e56"}],"address_city":[{"raw":"NY"}],"address_state":[{"raw":"New
+        York"}],"address_postal_code":[{"raw":"95184"}],"address_country":[{"raw":"United
+        States"}]}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json
+      Date:
+      - Mon, 22 Aug 2016 16:34:45 GMT
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=31536000
+      Txnid:
+      - 1d68y
+      Content-Length:
+      - '362'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"id":"5798ce7ee4b0caca55f0f85d","modifiedDate":1469632126947,"name":"Delete
+        Test Inc (all values)","fieldValues":{"address":[{"raw":"New York, NY, USA"}],"address_postal_code":[{"raw":"95184"}],"address_country":[{"raw":"United
+        States"}],"address_state":[{"raw":"New York"}],"primary_contact":[{"raw":"579bb1d3e4b0cb31c3328e56"}],"address_city":[{"raw":"NY"}]}}'
+    http_version: 
+  recorded_at: Mon, 22 Aug 2016 16:34:45 GMT
 recorded_with: VCR 2.9.3
