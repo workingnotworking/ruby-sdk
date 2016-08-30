@@ -53,6 +53,13 @@ describe SIQ::Account do
       @a.field_value('address_postal_code', '95184')
       @a.field_value('address_country', 'United States')
 
+      @a.field_value('2', 2) # Integer
+      @a.field_value('4', 'B') # Single Select (name or index)
+      @a.field_value('6', ['A','B']) # Multi Select (name or index)
+      @a.field_value('8', 'marcos.troncoso.is@gmail.com') # Collaborator
+      @a.field_value('10', '1472529600000') # Date
+      @a.field_value('12', 'This is a text') # Text
+
       @a.save
 
       @a.id.wont_be_nil
@@ -63,6 +70,12 @@ describe SIQ::Account do
       @a.field_values[:address_postal_code].wont_be_nil
       @a.field_values[:address_country].wont_be_nil
 
+      @a.field_values[:'2'].must_equal '2'
+      @a.field_values[:'4'].must_equal '1'
+      @a.field_values[:'6'].must_equal ["0", "1"]
+      @a.field_values[:'8'].must_equal '578e5cc4e4b0572044e0918f'
+      @a.field_values[:'10'].must_equal '2016-08-30'
+      @a.field_values[:'12'].must_equal 'This is a text'
     end
 
   end

@@ -48,7 +48,7 @@ module SIQ
       if value.nil?
         @field_values.fetch(key.to_sym, nil)
       else
-        @field_values[key.to_sym] = value.to_s
+        @field_values[key.to_sym] = value
         {key.to_sym => value.to_s}
       end
     end
