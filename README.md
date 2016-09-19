@@ -1,4 +1,7 @@
-# SalesforceIQ Ruby SDK 
+# SalesforceIQ Ruby SDK
+
+Moved to [siq-ruby-sdk](https://github.com/relateiq/siq-ruby-sdk).
+
 [![Gem Version](https://img.shields.io/gem/v/riq.svg)](http://badge.fury.io/rb/riq)
 [![Build Status](https://img.shields.io/travis/relateiq/ruby-sdk.svg)](https://travis-ci.org/relateiq/ruby-sdk)
 

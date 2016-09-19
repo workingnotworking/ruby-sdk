@@ -16,6 +16,11 @@ Gem::Specification.new do |spec|
   # 2.0 is min becuase use of refinements
   spec.required_ruby_version = '>= 2.0.0'
   # spec.post_install_message = 'The power of relationship intelligence is in your hands!'
+  spec.post_install_message = <<-MESSAGE
+ !    The `riq` gem has been deprecated and replaced with the siq gem.
+ !    Download and install from: bundle install siq
+ !    For the new siq gem documentation, see: https://github.com/relateiq/siq-ruby-sdk
+  MESSAGE
 
   # prod dependencies
   spec.add_dependency 'httparty', '~> 0.13'
