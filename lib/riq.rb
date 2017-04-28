@@ -35,7 +35,7 @@ module RIQExtensions
     end
   end
 
-  refine Fixnum do
+  refine Integer do
     def cut_milis
       self.to_s[0...-3].to_i
     end
